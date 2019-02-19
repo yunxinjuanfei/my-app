@@ -1,0 +1,14 @@
+﻿1.安装react环境
+2.引入bootstrap样式和字体
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+3.bootstrap免费布局网址
+    https://webthemez.com/demo/insight-free-bootstrap-html5-admin-template/ui-elements.html
+4.修改格局样式
+5.NavLink -- activeClassName="aaa"  //点击加样式
+6.<PageTitle title="首页"></PageTitle>   {this.props.title}
+7.util --工具层  
+8.server --服务层
+
+20190218看到6-2视频
+20190219看到6-7视频
