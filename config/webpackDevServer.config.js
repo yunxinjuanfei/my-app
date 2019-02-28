@@ -81,7 +81,21 @@ module.exports = function(proxy, allowedHost) {
       disableDotRule: true,
     },
     public: allowedHost,
-    proxy,
+    proxy:{
+      "/manage": {
+        target: "http://admintest.happymmall.com/",
+        // 因为使用的是https，会有协议安全校验，所以设置secure为false
+        secure: false,
+        // port: 80,
+        // ingorePath 默认即为 false, 注释掉也可以
+        // ingorePath: false, 
+        // changeOrigin是关键，如果不加这个就无法跳转请求，会产生跨域请求的问题
+        changeOrigin: true,
+        pathRewrite: {
+          '^/manage/': '/manage/'
+        }
+      }
+    },
     before(app, server) {
       if (fs.existsSync(paths.proxySetup)) {
         // This registers user provided middleware for proxy reasons

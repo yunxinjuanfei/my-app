@@ -1,14 +1,97 @@
 ﻿1.安装react环境
-2.引入bootstrap样式和字体
+2.引入bootstrap样式和字体/jquery
     <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 3.bootstrap免费布局网址
     https://webthemez.com/demo/insight-free-bootstrap-html5-admin-template/ui-elements.html
 4.修改格局样式
-5.NavLink -- activeClassName="aaa"  //点击加样式
+5.NavLink -- activeClassName="aaa"  //点击跳转加样式
 6.<PageTitle title="首页"></PageTitle>   {this.props.title}
 7.util --工具层  
 8.server --服务层
+9.登录
+    .用户登录
+    .用户信息本地存储
+    .登录完成跳转回上一页
+10.登录状态管理
+    .显示登录状态
+    .退出登录
+11.用户列表页
+    .用户列表
+    .分页功能的封装
+12.首页的开发
+    .数据统计展示
+13.错误提示页
+    .错误提示
+    .引导回到首页
+14.引入jquery
+    第一步：安装jQuery
+    npm i jquery -S
+    在哪个地方使用jQuery就在哪里引入jQuery
+    import $ from  'jquery'
+15.react中通过proxy解决跨域问题
+    一，对于使用creat-react-app构建的项目，可以直接在webpackDevServer.config.js下配置，具体如下
+        "proxy": "http://api.xxxx.com"
+        或者如果创建多个域，该如何设置proxy,能满足可以调用不同域下的API的需求？代码如下
+        "proxy": {
+            "/api/RoomApi": {
+            "target": "http://open.douyucdn.cn",
+            "changeOrigin":true
+            },
+            "/api/v1":{
+            "target":"http://capi.douyucdn.cn",
+            "changeOrigin":true
+            }
+        }
+        或
+        proxy:{
+        "/manage": {
+            target: "http://admintest.happymmall.com/",
+            // 因为使用的是https，会有协议安全校验，所以设置secure为false
+            secure: false,
+            // port: 80,
+            // ingorePath 默认即为 false, 注释掉也可以
+            // ingorePath: false, 
+            // changeOrigin是关键，如果不加这个就无法跳转请求，会产生跨域请求的问题
+            changeOrigin: true,
+            pathRewrite: {
+            '^/manage/': '/manage/'
+            }
+        }
+        },
+    二，对于antd-pro的项目，需要在package.json的同等目录下添加.roadhogrc文件，具体代码:
+        {
+        "entry": "src/index.js",
+        "extraBabelPlugins": [
+            "transform-runtime",
+            "transform-decorators-legacy",
+            "transform-class-properties",
+            ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": true }]
+        ],
+        "env": {
+            "development": {
+            "extraBabelPlugins": [
+                "dva-hmr"
+            ]
+            }
+        },
+        "externals": {
+            "g2": "G2",
+            "g-cloud": "Cloud",
+            "g2-plugin-slider": "G2.Plugin.slider"
+        },
+        "ignoreMomentLocale": true,
+        "theme": "./src/theme.js",
+        "proxy": {
+            "/api": {
+            "target": "http://api.xxxx.com/",
+            "changeOrigin": true
+            }
+        }
+        }
+
 
 20190218看到6-2视频
 20190219看到6-7视频
+20190226看到7-4视频
